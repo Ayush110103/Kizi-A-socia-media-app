@@ -1,0 +1,16 @@
+/* CoolName.css */
+.cool-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f5f9; /* Background color for the container */
+  }
+  
+  .cool-name {
+    font-family: 'YourCoolFont', sans-serif; /* Specify the desired font */
+    font-size: 3rem; /* Adjust the font size */
+    color: #3f72af; /* Blue color shade */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow for cool effect */
+  }
+  
