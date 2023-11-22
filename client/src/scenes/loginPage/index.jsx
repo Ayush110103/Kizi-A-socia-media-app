@@ -13,9 +13,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-        <div className="cool-name-container">
-      <h1 className="cool-name">Kizi</h1>
-    </div>
+          Kizi
         </Typography>
       </Box>
 
@@ -27,7 +25,7 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Kizi,A Social-Connecting app!
+          Explore the world in a more frenzy way!!
         </Typography>
         <Form />
       </Box>

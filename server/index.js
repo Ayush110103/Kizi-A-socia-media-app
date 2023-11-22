@@ -18,7 +18,8 @@ import User from "./models/User.js";
 import Post from "./models/Post.js";
 import { users, posts } from "./data/index.js";
 
-/* CONFIGURATIONS */
+/* CONFIGURATIONS (for middleware ) */
+// for accessing file with url (used with module),finally to use directory name
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
@@ -30,6 +31,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+// stores where assets are stored locally
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* FILE STORAGE */
@@ -41,21 +43,25 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
+// used for uploading files 
 const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
+// no separate route file because we need upload middleware
+// upload a picture before registering the user
 app.post("/auth/register", upload.single("picture"), register);
+// upload a picture before creating a post
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
-
+// jwt token are generated for every user to give them authorization to access the website
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */
-const PORT = 3001||6001;
+const PORT = process.env.PORT || 6001;
 mongoose
-  .connect('mongodb+srv://Luffy_taro:Ayush%4001036264@cluster0.4hq2x3a.mongodb.net/?retryWrites=true&w=majority', {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
